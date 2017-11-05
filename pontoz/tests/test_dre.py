@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 import pytest
 
 from pontoz import view
@@ -35,5 +37,23 @@ EXPECTED_CONTENTS.extend(f'<td>{i}%</td>' for i in range(3, 9))  # Investimento 
     EXPECTED_CONTENTS
 
 )
-def test_complete_dre(content, complete_dre):
+def complete_dre(content, complete_dre):
     assert content in complete_dre
+
+
+@pytest.mark.parametrize(
+    'expected_content',
+    [
+        '<title>Posto Flex</title>',
+        '<h1>Posto Flex</h1>',
+    ]
+
+)
+def test_dre_title(expected_content):
+    assert expected_content in view.render('dre.html', title='Posto Flex')
+
+
+@pytest.mark.parametrize('value', ['0.018', '1.22', '123.34'])
+def test_dre_base_coin_value(value):
+    dec = Decimal(value)
+    assert value in view.render('dre.html', base_coin_value=dec)
