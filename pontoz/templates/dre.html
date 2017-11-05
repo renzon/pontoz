@@ -22,34 +22,16 @@
   </tr>
   <tr>
     <td>Vendas</td>
-    <td>R$ 1,00</td>
-    <td>R$ 2,00</td>
-    <td>R$ 3,00</td>
-    <td>R$ 4,00</td>
-    <td>R$ 5,00</td>
-    <td>R$ 6,00</td>
-    <td>R$ 7,00</td>
-    <td>R$ 8,00</td>
-    <td>R$ 9,00</td>
-    <td>R$ 10,00</td>
-    <td>R$ 11,00</td>
-    <td>R$ 12,00</td>
+    {% for report in monthly_reports -%}
+      <td>R$ {{report.sale }}</td>
+    {% endfor -%}
     <td>R$ 78,00</td>
   </tr>
   <tr>
     <td>Vendas com Pontoz</td>
-    <td>R$ 13,00</td>
-    <td>R$ 14,00</td>
-    <td>R$ 15,00</td>
-    <td>R$ 16,00</td>
-    <td>R$ 17,00</td>
-    <td>R$ 18,00</td>
-    <td>R$ 19,00</td>
-    <td>R$ 20,00</td>
-    <td>R$ 21,00</td>
-    <td>R$ 22,00</td>
-    <td>R$ 23,00</td>
-    <td>R$ 24,00</td>
+    {% for report in monthly_reports -%}
+      <td>R$ {{report.pointz_sale }}</td>
+    {% endfor -%}
     <td>R$ 222,00</td>
   </tr>
   <tr>
@@ -70,18 +52,9 @@
   </tr>
   <tr>
     <td>(-) Emissão de Moeda Base</td>
-    <td>R$ 1,10</td>
-    <td>R$ 1,11</td>
-    <td>R$ 1,12</td>
-    <td>R$ 1,13</td>
-    <td>R$ 1,14</td>
-    <td>R$ 1,15</td>
-    <td>R$ 1,16</td>
-    <td>R$ 1,17</td>
-    <td>R$ 1,18</td>
-    <td>R$ 1,19</td>
-    <td>R$ 1,20</td>
-    <td>R$ 1,21</td>
+    {% for report in monthly_reports -%}
+      <td>R$ {{report.base_coin_cost }}</td>
+    {% endfor -%}
     <td>R$ 13,86</td>
   </tr>
   <tr>

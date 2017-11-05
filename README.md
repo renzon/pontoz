@@ -11,5 +11,5 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 7. Range, List Comprehension e F string
 8. Usando templates na camada visual (Jinja2)
 9. Utilização de chaves para imprimir valores do python para template
-9. Utilização de for para imprimir relatórios mensais no template
-
+10. Utilização de for para imprimir relatórios mensais no template
+11. Zip e extração de fixture de relatórios mensais
