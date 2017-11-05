@@ -9,7 +9,5 @@ _templates_path = path.join(_templates_path, 'templates')
 _env = Environment(loader=FileSystemLoader(_templates_path))
 
 
-def render(template, context=None):
-    if context is None:
-        context = {}
+def render(template, **context):
     return _env.get_template(template).render(context)
