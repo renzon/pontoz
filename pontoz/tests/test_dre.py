@@ -96,3 +96,16 @@ def test_dre_monthly_report_pointz_sales(expected_pointz_sale, monthly_reports):
 @pytest.mark.parametrize('expected_cost', [f'<td>R$ 1.{i}</td>' for i in range(10, 22)])
 def test_dre_monthly_report_costs(expected_cost, monthly_reports):
     assert expected_cost in view.render('dre.html', monthly_reports=monthly_reports)
+
+
+@pytest.mark.parametrize(
+    'percentage',
+    ['1300%', '700%', '500%', '400%', '340%', '300%', '271%', '250%', '233%', '220%', '209%', '200%']
+)
+def test_dre_pointz_sale_percentage(percentage, monthly_reports):
+    assert percentage in view.render('dre.html', monthly_reports=monthly_reports)
+
+
+@pytest.mark.parametrize('percentage', [f'<td>{i}%</td>' for i in range(3, 9)])
+def test_dre_cost_percentage(percentage, monthly_reports):
+    assert percentage in view.render('dre.html', monthly_reports=monthly_reports)

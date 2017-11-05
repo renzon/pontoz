@@ -13,3 +13,4 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 9. Utilização de chaves para imprimir valores do python para template
 10. Utilização de for para imprimir relatórios mensais no template
 11. Zip e extração de fixture de relatórios mensais
+12. Round para Porcentagem
