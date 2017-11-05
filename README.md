@@ -9,4 +9,5 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 5. DRE, Paths e Arquivos
 6. Testando Output
 7. Range, List Comprehension e F string
+8. Usando templates na camada visual (Jinja2)
 
