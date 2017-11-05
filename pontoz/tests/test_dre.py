@@ -3,6 +3,7 @@ from decimal import Decimal
 import pytest
 
 from pontoz import view
+from pontoz.models import MonthlyReport
 
 
 @pytest.fixture(scope='module')
@@ -14,7 +15,11 @@ EXPECTED_CONTENTS = [
     '<title>Posto Flex</title>',
     '<th>Valor da Moeda Base</th>', '<td>R$ 0,018</td>',
     '<th>jan-17</th>',
-    '<th>fev-17</th>', '<th>mar-17</th>', '<th>abr-17</th>', '<th>mai-17</th>', '<th>jun-17</th>',
+    '<th>fev-17</th>',
+    '<th>mar-17</th>',
+    '<th>abr-17</th>',
+    '<th>mai-17</th>',
+    '<th>jun-17</th>',
     '<th>jul-17</th>',
     '<th>ago-17</th>', '<th>set-17</th>', '<th>out-17</th>', '<th>nov-17</th>', '<th>dez-17</th>',
     '<th>Total Período</th>',
@@ -57,3 +62,18 @@ def test_dre_title(expected_content):
 def test_dre_base_coin_value(value):
     dec = Decimal(value)
     assert value in view.render('dre.html', base_coin_value=dec)
+
+
+@pytest.mark.parametrize(
+    'header',
+    [
+        '<th>jan-17</th>', '<th>fev-17</th>', '<th>mar-17</th>', '<th>abr-17</th>',
+        '<th>mai-17</th>', '<th>jun-17</th>', '<th>jul-17</th>', '<th>ago-17</th>',
+        '<th>set-17</th>', '<th>out-17</th>', '<th>nov-17</th>', '<th>dez-17</th>',
+    ]
+)
+def test_dre_base_coin_value(header):
+    monthly_reports = [
+        MonthlyReport(month=month, year=17) for month in 'jan fev mar abr mai jun jul ago set out nov dez'.split()
+    ]
+    assert header in view.render('dre.html', monthly_reports=monthly_reports)

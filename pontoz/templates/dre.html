@@ -5,28 +5,19 @@
   <title>{{ title }}</title>
 </head>
 <body>
-<h1>{{title}}</h1>
+<h1>{{ title }}</h1>
 <table>
   <tr>
     <th>Valor da Moeda Base</th>
-    <td>R$ {{ base_coin_value}}</td>
+    <td>R$ {{ base_coin_value }}</td>
   </tr>
 </table>
 <table>
   <tr>
     <th></th>
-    <th>jan-17</th>
-    <th>fev-17</th>
-    <th>mar-17</th>
-    <th>abr-17</th>
-    <th>mai-17</th>
-    <th>jun-17</th>
-    <th>jul-17</th>
-    <th>ago-17</th>
-    <th>set-17</th>
-    <th>out-17</th>
-    <th>nov-17</th>
-    <th>dez-17</th>
+    {% for report in monthly_reports -%}
+      <th>{{report.header }}</th>
+    {% endfor -%}
     <th>Total Período</th>
   </tr>
   <tr>
