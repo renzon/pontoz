@@ -7,4 +7,6 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 3. Entendendo o Problema
 4. Foco no Output, Input é custo
 5. DRE, Paths e Arquivos
+6. Testando Output
+7. Range, List Comprehension e F string
 
