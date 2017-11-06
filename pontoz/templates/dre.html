@@ -25,35 +25,35 @@
     {% for report in monthly_reports -%}
       <td>R$ {{report.sale }}</td>
     {% endfor -%}
-    <td>R$ 78,00</td>
+    <td>R$ {{ summary.sales }}</td>
   </tr>
   <tr>
     <td>Vendas com Pontoz</td>
     {% for report in monthly_reports -%}
       <td>R$ {{report.pointz_sale }}</td>
     {% endfor -%}
-    <td>R$ 222,00</td>
+    <td>R$ {{ summary.pointz_sales }}</td>
   </tr>
   <tr>
     <td>% Participação nas Vendas</td>
     {% for report in monthly_reports -%}
       <td>{{report.pointz_percentage }}%</td>
     {% endfor -%}
-    <td>285%</td>
+    <td>{{ summary.pointz_percentage }}%</td>
   </tr>
   <tr>
     <td>(-) Emissão de Moeda Base</td>
     {% for report in monthly_reports -%}
       <td>R$ {{report.base_coin_cost }}</td>
     {% endfor -%}
-    <td>R$ 13,86</td>
+    <td>R$ {{ summary.cost }}</td>
   </tr>
   <tr>
     <td>Investimento / Faturamento</td>
     {% for report in monthly_reports -%}
       <td>{{report.cost_percentage }}%</td>
     {% endfor -%}
-    <td>5%</td>
+    <td>{{ summary.cost_percentage }}%</td>
   </tr>
 </table>
 </body>
