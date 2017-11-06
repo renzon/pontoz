@@ -2,6 +2,8 @@
 
 Prova de conceito para transferir dados do SQL Server para BigQuery e depois para geração de relatório
 
+## Camada Visual
+
 1. Criar repositório em controlador de versão
 2. Fazer o setup de ambdev
 3. Entendendo o Problema
@@ -15,3 +17,8 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 11. Zip e extração de fixture de relatórios mensais
 12. Round para Porcentagem
 13. Sumário do DRE
+
+
+## Big Query
+
+1. O que é?
