@@ -24,3 +24,5 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 1. O que é?
 2. Instalação
 3. Esquemas
+4. Instalação Cliente Python
+5. Autenticação
