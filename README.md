@@ -22,3 +22,5 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 ## Big Query
 
 1. O que é?
+2. Instalação
+3. Esquemas
