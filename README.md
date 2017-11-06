@@ -26,3 +26,4 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 3. Esquemas
 4. Instalação Cliente Python
 5. Autenticação
+6. Fixtures

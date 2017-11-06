@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "sale": 1,
+    "pointz_sale": 0,
+    "year": 2017,
+    "month": 1,
+    "day": 1,
+    "store": {
+      "id": 1,
+      "name": "Posto 1",
+      "region": {
+        "id": 1,
+        "name": "Fortaleza",
+        "client": {
+          "id": 1,
+          "name": "Posto Flex",
+          "segment": "GAS"
+        }
+      }
+    }
+  }
+]
