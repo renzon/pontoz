@@ -28,3 +28,4 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 5. Autenticação
 6. Fixtures
 7. Esquema via Client
+8. Carregamento de Dados

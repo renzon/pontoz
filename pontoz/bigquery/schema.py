@@ -6,11 +6,11 @@ from pontoz.bigquery.client import client
 
 for pontoz_dataset in client.list_datasets():
     pass
-transactions_ref = pontoz_dataset.table('transactions')
+_transactions_ref = pontoz_dataset.table('transactions')
 try:
-    transactions_table = client.get_table(transactions_ref)
+    transactions_table = client.get_table(_transactions_ref)
 except NotFound:
-    transactions_table = Table(transactions_ref)
+    transactions_table = Table(_transactions_ref)
     SCHEMA = [
         SchemaField('id', 'integer', 'REQUIRED', None, ()),
         SchemaField('sale', 'float', 'REQUIRED', None, ()),
