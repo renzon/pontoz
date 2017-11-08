@@ -29,3 +29,4 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 6. Fixtures
 7. Esquema via Client
 8. Carregamento de Dados
+9. Query via Interface Web
