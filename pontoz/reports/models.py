@@ -58,3 +58,19 @@ class MonthlyReport:
             setattr(report, key, dct[key])
 
         return report
+
+
+def _extract_client_data(row):
+    return {'region': row.region_name, 'client': row.client_name, 'segment': row.segment_name}
+
+
+def group_annual_region_report(monthly_results):
+    """Group Results By Client's region. Return a list of tuples where first element is a dict
+    containing client's details and second element is annual monthly reports
+
+    :param monthly_results: Monthly results per client coming from Big Query
+    :return: List of Tuples
+    """
+    lista = list(range(4))
+    lista[0] = (_extract_client_data(monthly_results[0]), None)
+    return lista

@@ -3,6 +3,7 @@ from decimal import Decimal
 import pytest
 from google.cloud.bigquery._helpers import Row
 
+from pontoz.reports import models
 from pontoz.reports.models import MonthlyReport
 
 ANNUAL_RESULT_PER_CLIENT = [
@@ -46,3 +47,15 @@ def test_row_to_monthly_report(row):
     assert report.sale == Decimal(row.sale)
     assert report.year == row.year
     assert report.month == row.month
+
+
+def test_annual_groupy_len():
+    assert 4 == len(models.group_annual_region_report(ANNUAL_RESULT_PER_CLIENT))
+
+
+def test_annual_groupy_client_data():
+    client_data, _ = models.group_annual_region_report(ANNUAL_RESULT_PER_CLIENT)[0]
+    assert client_data == {'region': 'Fortaleza',
+                           'client': 'Posto Flex',
+                           'segment': 'GAS'
+                           }
