@@ -2,9 +2,9 @@ from decimal import Decimal
 
 import pytest
 
-from pontoz import view
-from pontoz.business import DRESummary
-from pontoz.models import MonthlyReport
+from pontoz.reports import view
+from pontoz.reports.business import DRESummary
+from pontoz.reports.models import MonthlyReport
 
 
 @pytest.fixture(scope='module')
