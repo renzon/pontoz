@@ -11,36 +11,22 @@ try:
     transactions_table = client.get_table(_transactions_ref)
 except NotFound:
     transactions_table = Table(_transactions_ref)
+
     SCHEMA = [
-        SchemaField('id', 'integer', 'REQUIRED', None, ()),
-        SchemaField('sale', 'float', 'REQUIRED', None, ()),
-        SchemaField('pointz_sale', 'float', 'REQUIRED', None, ()),
-        SchemaField('year', 'integer', 'REQUIRED', None, ()),
-        SchemaField('month', 'integer', 'REQUIRED', None, ()),
-        SchemaField('day', 'integer', 'REQUIRED', None, ()),
-        SchemaField(
-            'store', 'record', 'REQUIRED', None,
-            (
-                SchemaField('name', 'string', 'REQUIRED', None, ()),
-                SchemaField('id', 'integer', 'REQUIRED', None, ()),
-                SchemaField(
-                    'region', 'record', 'REQUIRED', None,
-                    (
-                        SchemaField('name', 'string', 'REQUIRED', None, ()),
-                        SchemaField('id', 'integer', 'REQUIRED', None, ()),
-                        SchemaField(
-                            'client', 'record', 'REQUIRED', None, (
-                                SchemaField('segment', 'string', 'REQUIRED', None, ()),
-                                SchemaField('name', 'string', 'REQUIRED', None, ()),
-                                SchemaField('id', 'integer', 'REQUIRED', None, ()))
-                        )
-                    )
-                ),
-            )
-        )
-
+        SchemaField('id', 'INT64', 'REQUIRED', None, ()),
+        SchemaField('sale', 'FLOAT64', 'REQUIRED', None, ()),
+        SchemaField('pointz_sale', 'FLOAT64', 'REQUIRED', None, ()),
+        SchemaField('year', 'INT64', 'REQUIRED', None, ()),
+        SchemaField('month', 'INT64', 'REQUIRED', None, ()),
+        SchemaField('day', 'INT64', 'REQUIRED', None, ()),
+        SchemaField('store_name', 'string', 'REQUIRED', None, ()),
+        SchemaField('store_id', 'INT64', 'REQUIRED', None, ()),
+        SchemaField('region_name', 'string', 'REQUIRED', None, ()),
+        SchemaField('region_id', 'INT64', 'REQUIRED', None, ()),
+        SchemaField('client_name', 'string', 'REQUIRED', None, ()),
+        SchemaField('client_id', 'INT64', 'REQUIRED', None, ()),
+        SchemaField('segment_name', 'string', 'REQUIRED', None, ()),
     ]
-
     transactions_table.schema = SCHEMA
     transactions_table = client.create_table(transactions_table)
 
