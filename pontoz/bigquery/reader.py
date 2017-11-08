@@ -5,8 +5,8 @@ from pontoz.bigquery.client import client
 
 ANNUAL_DRE_QUERY = """
 SELECT
-  SUM(sale) AS sales,
-  SUM(pointz_sale) AS pointz_sales,
+  SUM(sale) AS sale,
+  SUM(pointz_sale) AS pointz_sale,
   year,
   month,
   region_name,

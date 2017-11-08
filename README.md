@@ -31,3 +31,4 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 8. Carregamento de Dados
 9. Query via Interface Web
 10. Query on Python Client
+11. Resultado de Busca -> Modelo de Relatório
