@@ -33,3 +33,4 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 10. Query on Python Client
 11. Resultado de Busca -> Modelo de Relatório
 12. Agrupar Relatórios Mensais -> Relatório
+13. Zip, partial, funções geradoras

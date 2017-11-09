@@ -1,4 +1,5 @@
 from decimal import Decimal
+from functools import partial
 
 import pytest
 from google.cloud.bigquery._helpers import Row
@@ -49,13 +50,42 @@ def test_row_to_monthly_report(row):
     assert report.month == row.month
 
 
+reports_generator_function = partial(models.group_annual_region_report, ANNUAL_RESULT_PER_CLIENT)
+
+
 def test_annual_groupy_len():
-    assert 4 == len(models.group_annual_region_report(ANNUAL_RESULT_PER_CLIENT))
+    assert 4 == len(list(reports_generator_function()))
 
 
-def test_annual_groupy_client_data():
-    client_data, _ = models.group_annual_region_report(ANNUAL_RESULT_PER_CLIENT)[0]
-    assert client_data == {'region': 'Fortaleza',
-                           'client': 'Posto Flex',
-                           'segment': 'GAS'
-                           }
+@pytest.mark.parametrize(
+    'client_data,dct',
+    zip((client_data for client_data, _ in reports_generator_function())
+        ,
+        [
+            {
+                'region': 'Fortaleza',
+                'client': 'Posto Flex',
+                'segment': 'GAS'
+            },
+            {
+                'region': 'São Paulo',
+                'client': 'Posto Flex',
+                'segment': 'GAS'
+            },
+            {
+                'region': 'Fortaleza',
+                'client': 'Posto In Flex',
+                'segment': 'GAS'
+            },
+            {
+                'region': 'Fortaleza',
+                'client': 'Mercado Fartura',
+                'segment': 'SUPER'
+            },
+
+        ]
+        )
+
+)
+def test_annual_groupy_client_data(client_data, dct):
+    assert client_data == dct

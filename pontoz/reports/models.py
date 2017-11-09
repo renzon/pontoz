@@ -1,4 +1,5 @@
 from decimal import Decimal
+from itertools import groupby
 
 
 def _to_decimal(number_or_none):
@@ -60,10 +61,6 @@ class MonthlyReport:
         return report
 
 
-def _extract_client_data(row):
-    return {'region': row.region_name, 'client': row.client_name, 'segment': row.segment_name}
-
-
 def group_annual_region_report(monthly_results):
     """Group Results By Client's region. Return a list of tuples where first element is a dict
     containing client's details and second element is annual monthly reports
@@ -71,6 +68,8 @@ def group_annual_region_report(monthly_results):
     :param monthly_results: Monthly results per client coming from Big Query
     :return: List of Tuples
     """
-    lista = list(range(4))
-    lista[0] = (_extract_client_data(monthly_results[0]), None)
-    return lista
+
+    def _extract_client_data(row):
+        return {'region': row.region_name, 'client': row.client_name, 'segment': row.segment_name}
+
+    return groupby(monthly_results, key=_extract_client_data)
