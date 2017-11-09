@@ -11,5 +11,4 @@ _env = Environment(loader=FileSystemLoader(_templates_path))
 
 def render(template, **context):
     rendered = _env.get_template(template).render(context)
-    print(rendered)
     return rendered

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{ title }}</title>
+  <title>{{ client }}</title>
 </head>
 <body>
-<h1>{{ title }}</h1>
+<h1>{{ segment }} - {{ client }} - {{ region }}</h1>
 <table>
   <tr>
     <th>Valor da Moeda Base</th>
@@ -16,42 +16,42 @@
   <tr>
     <th></th>
     {% for report in monthly_reports -%}
-      <th>{{report.header }}</th>
+      <th>{{ report.header }}</th>
     {% endfor -%}
     <th>Total Período</th>
   </tr>
   <tr>
     <td>Vendas</td>
     {% for report in monthly_reports -%}
-      <td>R$ {{report.sale }}</td>
+      <td>R$ {{ report.sale }}</td>
     {% endfor -%}
     <td>R$ {{ summary.sales }}</td>
   </tr>
   <tr>
     <td>Vendas com Pontoz</td>
     {% for report in monthly_reports -%}
-      <td>R$ {{report.pointz_sale }}</td>
+      <td>R$ {{ report.pointz_sale }}</td>
     {% endfor -%}
     <td>R$ {{ summary.pointz_sales }}</td>
   </tr>
   <tr>
     <td>% Participação nas Vendas</td>
     {% for report in monthly_reports -%}
-      <td>{{report.pointz_percentage }}%</td>
+      <td>{{ report.pointz_percentage }}%</td>
     {% endfor -%}
     <td>{{ summary.pointz_percentage }}%</td>
   </tr>
   <tr>
     <td>(-) Emissão de Moeda Base</td>
     {% for report in monthly_reports -%}
-      <td>R$ {{report.base_coin_cost }}</td>
+      <td>R$ {{ report.base_coin_cost }}</td>
     {% endfor -%}
     <td>R$ {{ summary.cost }}</td>
   </tr>
   <tr>
     <td>Investimento / Faturamento</td>
     {% for report in monthly_reports -%}
-      <td>{{report.cost_percentage }}%</td>
+      <td>{{ report.cost_percentage }}%</td>
     {% endfor -%}
     <td>{{ summary.cost_percentage }}%</td>
   </tr>

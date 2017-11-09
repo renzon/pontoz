@@ -25,7 +25,7 @@ def complete_dre(monthly_reports):
     return view.render('dre.html',
                        monthly_reports=monthly_reports,
                        summary=summary,
-                       title='Posto Flex',
+                       client='Posto Flex',
                        base_coin_value=Decimal('0.018')
                        )
 
@@ -64,12 +64,12 @@ def test_complete_dre(content, complete_dre):
     'expected_content',
     [
         '<title>Posto Flex</title>',
-        '<h1>Posto Flex</h1>',
+        '<h1>GAS - Posto Flex - Fortaleza</h1>',
     ]
 
 )
 def test_dre_title(expected_content):
-    assert expected_content in view.render('dre.html', title='Posto Flex', summary=None)
+    assert expected_content in view.render('dre.html', client='Posto Flex', region= 'Fortaleza', segment='GAS', summary=None)
 
 
 @pytest.mark.parametrize('value', ['0.018', '1.22', '123.34'])

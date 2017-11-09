@@ -1,4 +1,5 @@
 from datetime import date
+
 from google.cloud import bigquery
 
 from pontoz.bigquery.client import client
@@ -31,7 +32,9 @@ ORDER BY
 """
 
 
-def get_annual_dre_by_client_region(year):
+def get_annual_dre_by_client_region(year=None):
+    if year is None:
+        year = date.today().year
     year = int(year)
     year_param = bigquery.ScalarQueryParameter('year', 'INT64', year)
     job_config = bigquery.QueryJobConfig()
@@ -40,11 +43,9 @@ def get_annual_dre_by_client_region(year):
         ANNUAL_DRE_QUERY, job_config=job_config)  # API request - starts the query
 
     # Waits for the query to finish
-    iterator = query_job.result()
-    return list(iterator)
+    return query_job.result()
 
 
 if __name__ == '__main__':
-    today=date.today()
-    annual_reports = get_annual_dre_by_client_region(today.year)
-    print(annual_reports)
+    annual_reports = get_annual_dre_by_client_region()
+    print(list(annual_reports))
