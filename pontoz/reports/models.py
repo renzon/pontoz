@@ -8,6 +8,12 @@ def _to_decimal(number_or_none):
     return Decimal(number_or_none)
 
 
+_number_to_month = dict(zip(
+    map(str, range(1, 13)),
+    'jan fev mar abr mai jun jul ago set out nov dez'.split()
+))
+
+
 class MonthlyReport:
     def __init__(self, month=None, year=None, sale=None, pointz_sale=None, base_coin_cost=None):
         self.base_coin_cost = base_coin_cost
@@ -39,6 +45,14 @@ class MonthlyReport:
     @sale.setter
     def sale(self, value):
         self._sale = _to_decimal(value)
+
+    @property
+    def month(self):
+        return self._month
+
+    @month.setter
+    def month(self, value):
+        self._month = _number_to_month.get(str(value), value)
 
     @property
     def header(self):

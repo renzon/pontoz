@@ -48,7 +48,7 @@ def test_row_to_monthly_report(row):
     assert report.pointz_sale == Decimal(row.pointz_sale)
     assert report.sale == Decimal(row.sale)
     assert report.year == row.year
-    assert report.month == row.month
+    assert report.month == models._number_to_month.get(str(row.month))
 
 
 reports_generator_function = partial(models.group_annual_region_report, ANNUAL_RESULT_PER_CLIENT)
