@@ -5,6 +5,7 @@ import pytest
 from google.cloud.bigquery._helpers import Row
 
 from pontoz.reports import models
+from pontoz.reports.business import DRESummary
 from pontoz.reports.models import MonthlyReport
 
 ANNUAL_RESULT_PER_CLIENT = [
@@ -34,9 +35,9 @@ ANNUAL_RESULT_PER_CLIENT = [
         {'sale': 0, 'pointz_sale': 1, 'year': 2, 'month': 3, 'region_name': 4, 'client_name': 5, 'segment_name': 6}),
     Row((12.0, 24.0, 2017, 3, 'São Paulo', 'Posto Flex', 'GAS'),
         {'sale': 0, 'pointz_sale': 1, 'year': 2, 'month': 3, 'region_name': 4, 'client_name': 5, 'segment_name': 6}),
-    Row((12.0, 24.0, 2017, 3, 'Fortaleza', 'Posto In Flex', 'GAS'),
+    Row((12.1, 24.1, 2017, 3, 'Fortaleza', 'Posto In Flex', 'GAS'),
         {'sale': 0, 'pointz_sale': 1, 'year': 2, 'month': 3, 'region_name': 4, 'client_name': 5, 'segment_name': 6}),
-    Row((12.0, 24.0, 2017, 3, 'Fortaleza', 'Mercado Fartura', 'SUPER'),
+    Row((12.2, 24.2, 2017, 3, 'Fortaleza', 'Mercado Fartura', 'SUPER'),
         {'sale': 0, 'pointz_sale': 1, 'year': 2, 'month': 3, 'region_name': 4, 'client_name': 5, 'segment_name': 6})]
 
 
@@ -53,7 +54,7 @@ def test_row_to_monthly_report(row):
 reports_generator_function = partial(models.group_annual_region_report, ANNUAL_RESULT_PER_CLIENT)
 
 
-def test_annual_groupy_len():
+def test_annual_group_len():
     assert 4 == len(list(reports_generator_function()))
 
 
@@ -87,5 +88,42 @@ def test_annual_groupy_len():
         )
 
 )
-def test_annual_groupy_client_data(client_data, dct):
+def test_annual_group_client_data(client_data, dct):
     assert client_data == dct
+
+
+@pytest.mark.parametrize(
+    'monthly_reports, expected_len',
+    zip((list(monthly_reports) for _, monthly_reports in reports_generator_function())
+        ,
+        [12, 1, 1, 1]
+        )
+)
+def test_annual_group_monthly_reports_len(monthly_reports, expected_len):
+    assert expected_len == len(monthly_reports)
+
+
+@pytest.mark.parametrize(
+    'monthly_reports',
+    (list(monthly_reports) for _, monthly_reports in reports_generator_function())
+)
+def test_annual_group_monthly_instance(monthly_reports):
+    for report in monthly_reports:
+        assert isinstance(report, MonthlyReport)
+
+
+@pytest.mark.parametrize(
+    'dre_summary, dct',
+    zip(
+        (DRESummary(monthly_reports) for _, monthly_reports in reports_generator_function()),
+        [
+            {'sales': 78, 'pointz_sales': 222},
+            {'sales': 12, 'pointz_sales': 24},
+            {'sales': Decimal(12.1), 'pointz_sales': Decimal(24.1)},
+            {'sales': Decimal(12.2), 'pointz_sales': Decimal(24.2)},
+        ]
+    )
+)
+def test_annual_group_monthly_instance(dre_summary, dct):
+    assert pytest.approx(dct['sales'], dre_summary.sales, 0.001)
+    assert pytest.approx(dct['pointz_sales'], dre_summary.pointz_sales, 0.001)

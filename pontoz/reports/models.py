@@ -72,4 +72,5 @@ def group_annual_region_report(monthly_results):
     def _extract_client_data(row):
         return {'region': row.region_name, 'client': row.client_name, 'segment': row.segment_name}
 
-    return groupby(monthly_results, key=_extract_client_data)
+    for client_data, rows, in groupby(monthly_results, key=_extract_client_data):
+        yield client_data, map(MonthlyReport.create_from_dct, rows)

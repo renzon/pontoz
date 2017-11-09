@@ -1,6 +1,6 @@
 class DRESummary:
     def __init__(self, monthly_reports):
-        self.monthly_reports = monthly_reports
+        self.monthly_reports = list(monthly_reports)
 
     @property
     def sales(self):
