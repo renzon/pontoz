@@ -1,0 +1,4 @@
+GAS = 'GAS'
+SUPER = 'SUPER'
+
+ALL = (GAS, SUPER)

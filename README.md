@@ -36,3 +36,7 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 13. Zip, partial, funções geradoras
 14. Geração de relatórios mensais do ano
 15. Integração BigQuery com Report
+
+# SQL Server
+
+1. Instalando DB
