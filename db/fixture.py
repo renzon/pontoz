@@ -60,7 +60,7 @@ for month in range(1, 13):
                 creation=datetime(2017, month, day, hour, minute)
             )
         )
-    for _, store, day, hour, minute in zip(range(month+12), cycle_flex_fortaleza_stores, cycle_days, cycle_hours,
+    for _, store, day, hour, minute in zip(range(month + 12), cycle_flex_fortaleza_stores, cycle_days, cycle_hours,
                                            cycle_minutes):
         session.add(
             Transaction(
@@ -70,6 +70,48 @@ for month in range(1, 13):
                 creation=datetime(2017, month, day, hour, minute)
             )
         )
+
+# Acrescentando loja de regional sp do posto flex
+
+session.add(
+    Transaction(
+        store_id=loja_flex_sp.id,
+        sale=Decimal('12.00'),
+        pointz_sale=Decimal('24.00'),
+        creation=datetime(2017, 1, 1, 1, 1)
+    )
+)
+
+# Acrescentando loja de de fortaleza de posto um ano depois e antes de 2017
+for year in [2016, 2018]:
+    session.add(
+        Transaction(
+            store_id=lojas_flex_fortaleza[0].id,
+            sale=Decimal('12.00'),
+            pointz_sale=Decimal('24.00'),
+            creation=datetime(year, 1, 1, 1, 1)
+        )
+    )
+
+# Acrescentando Outro Parceiro do Segmento GAS
+session.add(
+    Transaction(
+        store_id=loja_noflex_fortaleza.id,
+        sale=Decimal('12.00'),
+        pointz_sale=Decimal('24.00'),
+        creation=datetime(2017, 1, 1, 1, 1)
+    )
+)
+# Acrescentando Outro Parceiro do Segmento SUPER
+session.add(
+    Transaction(
+        store_id=loja_fartura_fortaleza.id,
+        sale=Decimal('12.00'),
+        pointz_sale=Decimal('24.00'),
+        creation=datetime(2017, 1, 1, 1, 1)
+    )
+)
+
 session.commit()
 
 session.close()
