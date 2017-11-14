@@ -20,4 +20,5 @@ Query para client e regionais:
 SELECT p.*, r.*, s.*, t.* FROM partner AS p 
     INNER JOIN region AS r ON p.id=r.partner_id 
     INNER JOIN store AS s ON r.id=s.region_id 
-    INNER JOIN  "transaction" AS t ON (s.id=t.store_id AND t.creation between '01/01/2017' and '12/31/2017 23:59:59') 
+    INNER JOIN  "transaction" AS t ON (s.id=t.store_id AND t.creation >= '01/01/2017 00:00:00')
+ORDER BY t.creation 
