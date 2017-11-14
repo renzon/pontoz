@@ -14,3 +14,10 @@ Para conferir o Banco
 3. Se etiver no mac pracisa instalar mais drivers:
 
 https://github.com/mkleehammer/pyodbc/wiki/Connecting-to-SQL-Server-from-Mac-OSX
+
+
+Query para client e regionais:
+SELECT p.*, r.*, s.*, t.* FROM partner AS p 
+    INNER JOIN region AS r ON p.id=r.partner_id 
+    INNER JOIN store AS s ON r.id=s.region_id 
+    INNER JOIN  "transaction" AS t ON s.id=t.store_id 

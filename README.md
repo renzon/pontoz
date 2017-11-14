@@ -40,3 +40,9 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 # SQL Server
 
 1. Instalando DB
+2. Instalando pyodbc
+3. Instlaando SQL Alchemy
+4. Criação de Schema
+5. Fixtures
+6. Cycle
+7. Problemas do N + 1 selects
