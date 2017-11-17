@@ -9,7 +9,7 @@ from pontoz.reports.models import group_annual_region_report
 from pontoz.reports.view import render
 
 
-def main():
+def generate_reports():
     query_result_iterator = get_annual_dre_by_client_region()
     if path.exists('build'):
         shutil.rmtree('build')
@@ -36,4 +36,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    generate_reports()

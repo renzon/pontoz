@@ -64,3 +64,4 @@ for n in comb:
 6. Cycle
 7. Problemas do N + 1 selects
 8. Carregando Transações em batelada
+9. Sql Transaction para BigQuery Row
