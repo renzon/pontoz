@@ -63,3 +63,4 @@ for n in comb:
 5. Fixtures
 6. Cycle
 7. Problemas do N + 1 selects
+8. Carregando Transações em batelada

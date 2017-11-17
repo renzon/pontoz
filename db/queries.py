@@ -1,3 +1,8 @@
+from sqlalchemy.orm import joinedload
+
+from db.tables import Session, Transaction, Store, Region
+
+
 def get_transactions_with_id_greater_than(id, limit=100):
     """Get transactions grater than id and ordered by id so it can be used to fetch transactions in batch.
     One can fetch the first transaction defined by limit and use the last transaction's id to get the next
@@ -18,7 +23,14 @@ def get_transactions_with_id_greater_than(id, limit=100):
     :param limit: limit of transaction per batch, default is 100
     :return: list for transactions
     """
-    return 0
+    session = Session()
+    query = session.query(Transaction).options(
+        joinedload(Transaction.store).joinedload(Store.region).joinedload(Region.partner)
+    ).filter(Transaction.id > id).order_by(Transaction.id)
+    result = query.all()
+    session.close()
+    return result
+
 
 def get_transactions_batches(id, limit=100):
     """Returns batches fo transactions with primary keys greater than id. Each batch has a max of transactions
@@ -28,8 +40,16 @@ def get_transactions_batches(id, limit=100):
     :param limit: limit of transactions per batch
     :return: iterator where each element is a batch of transactions
     """
+    while True:
+        batch = get_transactions_with_id_greater_than(id, limit)
+        if len(batch) == 0:
+            break
+        yield batch
+        id = batch[-1].id
 
 
 if __name__ == '__main__':
     for batch in get_transactions_batches(0):
-        print(batch)
+        print('New Batch')
+        for t in batch:
+            print(t)
