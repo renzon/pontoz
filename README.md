@@ -25,7 +25,24 @@ Prova de conceito para transferir dados do SQL Server para BigQuery e depois par
 2. Instalação
 3. Esquemas
 4. Instalação Cliente Python
-5. Autenticação
+5. Autentis='gio'
+s1='iog'
+b = []
+for i in range(len(s)):
+    b+=s[i]
+a = []
+for j in range(len(s1)):
+    a+=s1[j]
+
+# print(b)
+from itertools import product
+comb=product(a,repeat=len(a))
+perm=[]
+for n in comb:
+    print(n)
+    # perm.append(n)
+    if n==b:
+        print(n)cação
 6. Fixtures
 7. Esquema via Client
 8. Carregamento de Dados
