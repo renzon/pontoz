@@ -26,7 +26,7 @@ def get_transactions_with_id_greater_than(id, limit=100):
     session = Session()
     query = session.query(Transaction).options(
         joinedload(Transaction.store).joinedload(Store.region).joinedload(Region.partner)
-    ).filter(Transaction.id > id).order_by(Transaction.id)
+    ).filter(Transaction.id > id).order_by(Transaction.id).limit(limit)
     result = query.all()
     session.close()
     return result

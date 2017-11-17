@@ -3,7 +3,9 @@ import shutil
 from decimal import Decimal
 from os import path
 
-from pontoz.bigquery.reader import get_annual_dre_by_client_region
+from db.queries import get_transactions_batches
+from pontoz.bigquery.reader import get_annual_dre_by_client_region, get_max_transaction_id
+from pontoz.bigquery.uploader import upload_transaction_batch
 from pontoz.reports.business import DRESummary
 from pontoz.reports.models import group_annual_region_report
 from pontoz.reports.view import render
@@ -36,4 +38,6 @@ def generate_reports():
 
 
 if __name__ == '__main__':
+    for batch in get_transactions_batches(get_max_transaction_id(), 10):
+        upload_transaction_batch(batch)
     generate_reports()
